@@ -877,6 +877,7 @@ runs:
         echo "::endgroup::"
 
         # cd "$KERNEL_PLATFORM_FOLDER"
+        # df -h
         # git config --global user.email "freeza@gmail.com"
         # git config --global user.name "Build"
         # git remote add google-bbr https://github.com/google/bbr.git
