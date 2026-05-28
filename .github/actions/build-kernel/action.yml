@@ -876,6 +876,7 @@ runs:
         sed -i 's/protected_modules = \[.*\]/protected_modules = []/' common/modules.bzl || true
         echo "::endgroup::"
 
+        cd "$KERNEL_PLATFORM_FOLDER"
         git config --global user.email "freeza@gmail.com"
         git config --global user.name "Build"
         git remote add google-bbr https://github.com/google/bbr.git
@@ -883,7 +884,9 @@ runs:
         git show-ref --verify --quiet refs/remotes/google-bbr/v3 || { echo "Error: google-bbr/v3 branch not found"; exit 1; }
         git merge google-bbr/v3 --allow-unrelated-histories --no-ff --no-commit
         git reset HEAD README.md
+        git reset HEAD .gitignore
         git checkout -- README.md
+        git checkout -- .gitignore
         git commit -m "Merge BBR v3 into kernel"
 
     - name: Add KernelSU Next
