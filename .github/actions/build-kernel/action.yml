@@ -881,7 +881,10 @@ runs:
         git remote add google-bbr https://github.com/google/bbr.git
         git fetch google-bbr v3
         git show-ref --verify --quiet refs/remotes/google-bbr/v3 || { echo "Error: google-bbr/v3 branch not found"; exit 1; }
-        git merge google-bbr/v3 --allow-unrelated-histories -m "Merge BBR v3 into kernel"
+        git merge google-bbr/v3 --allow-unrelated-histories --no-ff --no-commit
+        git reset HEAD README.md
+        git checkout -- README.md
+        git commit -m "Merge BBR v3 into kernel"
 
     - name: Add KernelSU Next
       shell: bash
